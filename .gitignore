@@ -1,0 +1,13 @@
+node_modules/
+dist/
+.DS_Store
+
+# Slidev build/dev artifacts
+.slidev/
+components.d.ts
+*.local
+
+# Export output
+slides-export/
+slides.pdf
+slides.pptx

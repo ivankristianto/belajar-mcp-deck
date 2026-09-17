@@ -1,0 +1,56 @@
+/* Light mode, the theme's default. Apple Basic is modelled on Keynote's Basic Black and
+   Basic White, so both schemes are first-class here and `d` toggles between them.
+   The tone colours are darker than their dark-mode twins: the muted versions were picked
+   to sit on a dark panel and go too faint once they are on white. */
+:root {
+  --accent: #2f5f93;
+  --accent-soft: #2f5f931a;
+  --warn: #8a6222;
+  --danger: #93463a;
+  --safe: #3f6f4e;
+
+  /* Deck background. Pure white and pure black both glare through a compressed video
+     stream, so each scheme is pulled one step toward the middle. One value each. */
+  --deck-bg: #fbfbf9;
+}
+
+html.dark {
+  --accent: #3b6ea5;
+  --accent-soft: #3b6ea51f;
+  --warn: #b4884a;
+  --danger: #a35648;
+  --safe: #5a8a6b;
+
+  --deck-bg: #1a1d24;
+}
+
+/* apple-basic's default layout is not full-height, so whatever sits behind it shows
+   through below the content. Slidev paints those with ID selectors (#slide-content and
+   friends), which a class selector cannot out-specify, so match on the IDs. */
+body,
+#app,
+#page-root,
+#slide-content,
+.slidev-layout {
+  background-color: var(--deck-bg);
+}
+
+/* apple-basic was drawn against Helvetica Neue. Plus Jakarta Sans is wider and more
+   geometric, so its large headings need tighter tracking to hold the same rhythm. */
+.slidev-layout h1 {
+  letter-spacing: -0.02em;
+}
+
+/* The theme wants the intro and fact subtitles bold and full strength. Dim the rest. */
+.slidev-layout:not(.intro):not(.fact) h1 + p {
+  opacity: 0.7;
+}
+
+/* Statement headings ship at 6xl, which wraps a sentence this long onto three lines and
+   pushes the body copy off the slide. Cap the measure so it breaks predictably. */
+.slidev-layout.statement h1 {
+  font-size: 3.25rem;
+  line-height: 1.12;
+  max-width: 20ch;
+  margin-inline: auto;
+}
