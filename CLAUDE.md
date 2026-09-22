@@ -55,4 +55,21 @@ Verify changes in the browser in both schemes. A clean build does not catch any 
 
 ## Deployment
 
-Both `netlify.toml` and `vercel.json` are committed, each building with `npm run build` and serving `dist/` as an SPA with a catch-all rewrite to `index.html`. Netlify additionally passes `/.well-known/*` through untouched. If the base path changes, Slidev needs `--base` on the build and both configs need updating.
+The live deck is on DomaiNesia shared hosting at https://belajarweb.cloud/belajar-mcp/,
+served from `public_html/belajar-mcp` on cPanel account `belaj255`. Pushing to `main` on
+`ivankristianto/belajar-mcp-deck` runs `.github/workflows/build.yml`, which builds with
+`--base /belajar-mcp/`, copies `deploy/.htaccess` in for Apache SPA routing, and
+force-pushes the output to the `deploy` branch. The server then pulls that branch as a
+codeload tarball. The hosting does not pull on its own yet, so that last step is manual.
+
+The `deploy-to-domainesia` skill has the full procedure, the server-side commands, and
+the reason uploads have to be pull-based. Read it before touching the hosting: the MCP's
+`upload_file` takes base64 inline, so nothing larger than a small text file can be pushed
+to that account in a tool call.
+
+`netlify.toml` and `vercel.json` are also committed, each building with a bare
+`npm run build` and serving `dist/` as an SPA with a catch-all rewrite to `index.html`.
+Netlify additionally passes `/.well-known/*` through untouched. Because they omit
+`--base`, they produce a root-based deck and are only correct for a root deploy. A base
+path change has to land in the workflow, `deploy/.htaccess`, the extraction target, and
+both of these configs together.
