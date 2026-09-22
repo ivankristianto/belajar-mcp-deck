@@ -1,0 +1,41 @@
+name: Build deck
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+env:
+  BASE_PATH: /belajar-mcp/
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - run: npx slidev build --base "$BASE_PATH"
+
+      - name: Add Apache SPA rewrite
+        run: cp deploy/.htaccess dist/.htaccess
+
+      - name: Publish build to deploy branch
+        working-directory: dist
+        run: |
+          git init -q
+          git checkout -q -b deploy
+          git add -A
+          git -c user.name='github-actions[bot]' \
+              -c user.email='41898282+github-actions[bot]@users.noreply.github.com' \
+              commit -qm "Build ${GITHUB_SHA::7}"
+          git push -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" deploy
