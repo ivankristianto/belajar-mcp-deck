@@ -1,0 +1,7 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /belajar-mcp/
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /belajar-mcp/index.html [L]
+</IfModule>
