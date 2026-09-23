@@ -5,8 +5,8 @@ titleTemplate: '%s — Kelas Tanya DomaiNesia'
 info: |
   ## Otomasi AI Agent: Kelola Website dan Hosting pakai MCP
   Kelas Tanya DomaiNesia, 24 September 2026
-  Ivan Kristianto
-author: Ivan Kristianto
+  Ivan K
+author: Ivan K
 themeConfig:
   primary: '#3b6ea5'
 colorSchema: auto
@@ -31,7 +31,7 @@ Kelola Website dan Hosting pakai MCP
 <img src="/kelas-tanya-domainesia.png" alt="Kelas Tanya DomaiNesia" class="absolute top-8 right-10 w-56" />
 
 <div class="absolute bottom-10">
-  <div class="font-semibold">Ivan Kristianto</div>
+  <div class="font-semibold">Ivan K</div>
   <div class="text-sm opacity-70">Google Developer Expert for Web Technology</div>
   <div class="text-sm opacity-50 mt-3">Kelas Tanya DomaiNesia · 24 September 2026</div>
 </div>
@@ -700,14 +700,14 @@ Tiga kalimat ini yang harus bertahan sampai besok pagi. Ucapkan pelan.
 layout: statement
 ---
 
-# Tanya Jawab
-
-<div class="mt-8 opacity-60 text-center">
-Silakan tulis di kolom chat
-</div>
-
-<div class="mt-20 text-sm opacity-40 text-center">
-Terima kasih · Ivan Kristianto · Kelas Tanya DomaiNesia
+<div class="flex items-center justify-center gap-16">
+  <div class="text-left">
+    <h1>Tanya Jawab</h1>
+    <div class="mt-6 opacity-60">Silakan tulis di kolom chat</div>
+    <div class="mt-10 text-sm opacity-60">Slide ini bisa dibuka lagi di<br><span class="font-semibold">belajarweb.cloud/belajar-mcp</span></div>
+    <div class="mt-10 text-sm opacity-40">Terima kasih · Ivan K · Kelas Tanya DomaiNesia</div>
+  </div>
+  <img src="/qr-belajar-mcp.png" alt="QR code ke belajarweb.cloud/belajar-mcp" class="w-72 rounded-xl shadow" />
 </div>
 
 <!--
