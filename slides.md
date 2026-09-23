@@ -28,8 +28,12 @@ layout: intro
 
 Kelola Website dan Hosting pakai MCP
 
-<div class="absolute bottom-10 text-sm opacity-60">
-  Ivan Kristianto · Kelas Tanya DomaiNesia · 24 September 2026
+<img src="/kelas-tanya-domainesia.png" alt="Kelas Tanya DomaiNesia" class="absolute top-8 right-10 w-56" />
+
+<div class="absolute bottom-10">
+  <div class="font-semibold">Ivan Kristianto</div>
+  <div class="text-sm opacity-70">Google Developer Expert for Web Technology</div>
+  <div class="text-sm opacity-50 mt-3">Kelas Tanya DomaiNesia · 24 September 2026</div>
 </div>
 
 <!--
@@ -47,18 +51,18 @@ class: text-center
 
 <div class="text-2xl mt-8 opacity-90">
 
-Bisakah AI <span v-mark.underline.orange="1">benar-benar mengerjakan</span> urusan website saya,
+Bisakah AI <AutoMark>benar-benar mengerjakan</AutoMark> urusan website saya,
 
 bukan cuma memberi saran?
 
 </div>
 
-<div v-click="2" class="mt-12 opacity-60 text-base">
+<div v-click class="mt-12 opacity-60 text-base">
 Tanpa menulis satu baris kode.
 </div>
 
 <!--
-[click] Tekankan "mengerjakan". Selama ini AI cuma kasih tahu caranya, kita yang eksekusi.
+Tekankan "mengerjakan". Selama ini AI cuma kasih tahu caranya, kita yang eksekusi.
 [click] Dan ini bagian yang bikin ini relevan buat yang bukan programmer.
 -->
 
@@ -82,29 +86,21 @@ layout: two-cols-header
 
 ### Chatbot
 
-<v-clicks>
-
 - Kamu tanya, dia menjawab
 - Semua eksekusi tetap di tangan kamu
 - "Coba cek error log di cPanel, biasanya ada di folder logs"
-
-</v-clicks>
 
 </div>
 
 ::right::
 
-<div v-click="4" class="pl-2">
+<div v-click class="pl-2">
 
 ### Agent
-
-<v-clicks at="5">
 
 - Kamu kasih tujuan, dia mengerjakan
 - Dia yang membuka, membaca, memutuskan
 - "Sudah saya baca log-nya. Ada 47 error yang sama, penyebabnya plugin X."
-
-</v-clicks>
 
 </div>
 
@@ -135,7 +131,7 @@ layout: default
 
 # Sebenarnya kamu sudah pakai
 
-<div v-click class="grid grid-cols-3 gap-6 mt-10">
+<div class="grid grid-cols-3 gap-6 mt-10">
 
 <div class="text-center">
   <carbon-search class="text-4xl opacity-70 mx-auto" />
@@ -158,7 +154,7 @@ layout: default
 </div>
 
 <div v-click class="mt-14 text-center text-lg">
-Polanya sama: <span v-mark.circle.orange="2">AI dikasih alat</span>, bukan cuma diajak ngobrol.
+Polanya sama: <span v-mark.circle.orange.delay600="1">AI dikasih alat</span>, bukan cuma diajak ngobrol.
 </div>
 
 <!--
@@ -176,7 +172,7 @@ class: text-center
 Hosting kamu.
 </div>
 
-<div v-click class="text-base mt-10 opacity-60 max-w-2xl mx-auto">
+<div v-after class="text-base mt-10 opacity-60 max-w-2xl mx-auto">
 Tanpa alat, agent cuma tahu data latihannya dan apa yang kamu tempel di chat.
 Log error, isi folder, konfigurasi DNS, semua masih harus kamu buka sendiri.
 </div>
@@ -200,11 +196,11 @@ layout: default
 # Model Context Protocol
 
 <div class="text-xl mt-6 leading-relaxed">
-Protokol terbuka yang <span v-mark.underline="1">menstandarkan</span> cara aplikasi AI terhubung
+Protokol terbuka yang <AutoMark color="blue">menstandarkan</AutoMark> cara aplikasi AI terhubung
 dengan data, tool, dan layanan eksternal.
 </div>
 
-<div v-click="2" class="mt-12">
+<div v-click class="mt-12">
 
 <div class="text-lg opacity-80">Yang sering disalahpahami, MCP itu bukan:</div>
 
@@ -216,11 +212,11 @@ dengan data, tool, dan layanan eksternal.
 
 </div>
 
-<div v-click="3" class="mt-10 text-lg opacity-80">
+<div v-after class="mt-10 text-lg opacity-80">
 MCP cuma mengurus satu hal: <strong>colokannya</strong>.
 </div>
 
-<div v-click="4" class="mt-4 text-sm opacity-60 border-t border-gray-400/20 pt-4 max-w-3xl">
+<div v-click class="mt-4 text-sm opacity-60 border-t border-gray-400/20 pt-4 max-w-3xl">
 Dan MCP tidak mengganti API. Umumnya MCP server dibangun <strong>di atas</strong> API yang sudah ada,
 jadi yang lama tetap jalan.
 </div>
@@ -232,26 +228,26 @@ Klik terakhir buat peserta developer, sekali sebut saja, jangan berhenti lama.
 
 ---
 layout: default
-clicks: 3
+clicks: 1
 ---
 
 # Kenapa ini penting
 
 <div class="mt-4">
-  <IntegrationMesh :mode="$clicks >= 2 ? 'mcp' : 'mesh'" />
+  <IntegrationMesh :mode="$clicks >= 1 ? 'mcp' : 'mesh'" />
 </div>
 
 <div class="text-center mt-2 h-8">
-  <span v-if="$clicks < 2" v-click="1" class="opacity-70">
+  <span v-if="$clicks < 1" class="opacity-70">
     3 AI × 4 layanan = <strong>12 integrasi</strong>, masing-masing dibuat khusus
   </span>
-  <span v-if="$clicks >= 2" class="opacity-90">
+  <span v-else class="opacity-90">
     3 + 4 = <strong>7 koneksi</strong> lewat 1 protokol yang sama
   </span>
 </div>
 
 <!--
-[click] Tunjukkan kekacauannya dulu. Ini dunia sebelum MCP, dan ini alasan integrasi selalu mahal.
+Tunjukkan kekacauannya dulu. Ini dunia sebelum MCP, dan ini alasan integrasi selalu mahal.
 [click] Lalu rapikan. Setiap layanan cukup bikin satu MCP server, setiap AI cukup bisa bicara MCP.
 Angkanya bukan sihir, tapi bedanya perkalian versus penjumlahan.
 -->
@@ -276,9 +272,9 @@ flowchart LR
 ```
 
 <div class="grid grid-cols-3 gap-5 mt-6 text-sm">
-  <div v-click><strong>Host</strong><br><span class="opacity-65">aplikasi yang kamu pakai</span></div>
-  <div v-click><strong>Client</strong><br><span class="opacity-65">koneksi yang dibuka host</span></div>
-  <div v-click><strong>Server</strong><br><span class="opacity-65">pihak yang menyediakan tool</span></div>
+  <div><strong>Host</strong><br><span class="opacity-65">aplikasi yang kamu pakai</span></div>
+  <div><strong>Client</strong><br><span class="opacity-65">koneksi yang dibuka host</span></div>
+  <div><strong>Server</strong><br><span class="opacity-65">pihak yang menyediakan tool</span></div>
 </div>
 
 <!--
@@ -299,7 +295,7 @@ Waktu tersambung, agent bertanya duluan ke server: <em>kamu bisa apa saja?</em>
 tools/list → get_account_info, list_domains, list_subdomains, ...
 </Prompt>
 
-<v-clicks>
+<div v-click>
 
 <div class="mt-6 opacity-85">
 Server menjawab dengan daftar kemampuannya, lengkap dengan deskripsi.
@@ -309,9 +305,9 @@ Server menjawab dengan daftar kemampuannya, lengkap dengan deskripsi.
 Kamu tidak pernah menulis kode penyambungnya. Itu sudah jadi bagian dari protokolnya.
 </div>
 
-</v-clicks>
+</div>
 
-<div v-click class="mt-8 text-sm opacity-60 border-t border-gray-400/20 pt-4">
+<div v-after class="mt-8 text-sm opacity-60 border-t border-gray-400/20 pt-4">
 Nanti di demo kita minta daftar ini langsung ke server, dan kita lihat isinya bareng-bareng.
 </div>
 
@@ -335,17 +331,17 @@ layout: default
 
 <div class="mt-8 space-y-5">
 
-<div v-click class="flex gap-4 items-baseline">
+<div class="flex gap-4 items-baseline">
   <span class="opacity-40 font-mono text-sm w-6">01</span>
   <span><strong>MyDomaiNesia</strong> → <strong>My Services</strong> → pilih layanan hosting kamu</span>
 </div>
 
-<div v-click class="flex gap-4 items-baseline">
+<div class="flex gap-4 items-baseline">
   <span class="opacity-40 font-mono text-sm w-6">02</span>
   <span>Di kartu <strong>AI Agent Access (MCP)</strong>, klik <strong>Enable AI Access</strong>, baca risikonya, centang persetujuan</span>
 </div>
 
-<div v-click class="flex gap-4 items-baseline">
+<div class="flex gap-4 items-baseline">
   <span class="opacity-40 font-mono text-sm w-6">03</span>
   <span>Pilih level akses, lalu buat <strong>MCP Password</strong></span>
 </div>
@@ -370,26 +366,26 @@ layout: default
 
 <div class="grid grid-cols-2 gap-4 mt-8">
 
-<div v-click>
+<div>
   <AccessLevel tone="danger" name="Full access" desc="Baca dan ubah hampir semua isi akun. Pakai kalau kamu benar-benar tahu apa yang kamu lakukan." />
 </div>
 
-<div v-click>
+<div>
   <AccessLevel tone="warn" name="No destructive" desc="Boleh mengubah, tapi hapus, uninstall, dan revoke diblokir." />
 </div>
 
-<div v-click>
+<div>
   <AccessLevel tone="safe" name="Read-only" desc="Cuma boleh melihat. Tidak bisa membuat, mengubah, atau menghapus." />
 </div>
 
-<div v-click>
+<div>
   <AccessLevel tone="lock" name="Containment" desc="Paling ketat. Untuk agent yang belum kamu percaya." />
 </div>
 
 </div>
 
 <div v-click class="mt-9 text-center text-lg">
-Saran saya: mulai dari <span v-mark.circle.green="5">Read-only</span>, naikkan hanya saat ada alasannya.
+Saran saya: mulai dari <span v-mark.circle.green.delay600="1">Read-only</span>, naikkan hanya saat ada alasannya.
 </div>
 
 <!--
@@ -402,14 +398,14 @@ layout: default
 
 # Yang bisa dijangkau
 
-<div v-click class="grid grid-cols-2 gap-x-10 gap-y-5 mt-10 text-lg">
+<div class="grid grid-cols-2 gap-x-10 gap-y-5 mt-10 text-lg">
   <div class="flex items-center gap-3"><carbon-document class="opacity-60" /> File dan folder</div>
   <div class="flex items-center gap-3"><carbon-data-base class="opacity-60" /> Database</div>
   <div class="flex items-center gap-3"><carbon-cloud class="opacity-60" /> Domain dan DNS</div>
   <div class="flex items-center gap-3"><carbon-branch class="opacity-60" /> Git deploy</div>
 </div>
 
-<div v-click class="mt-12 text-sm opacity-60">
+<div class="mt-12 text-sm opacity-60">
 Plus sumber daya hosting lain yang tersedia lewat akses ini.
 Daftar persisnya kita tanyakan langsung ke server-nya nanti waktu demo.
 </div>
@@ -495,7 +491,7 @@ Jangan ubah file apa pun.
 ```
 ````
 
-<div v-click="3" class="mt-8 text-sm opacity-70">
+<div v-click="2" class="mt-8 text-sm opacity-70">
 Bedanya ada tiga: <strong>target yang jelas</strong>, <strong>tugas yang sempit</strong>,
 dan <strong>batas yang eksplisit</strong>.
 </div>
@@ -511,10 +507,10 @@ layout: default
 # Yang jarang dibahas orang
 
 <div class="text-xl mt-6 leading-relaxed">
-Konten di server kamu sendiri <span v-mark.underline.red="1">bisa berisi perintah</span>.
+Konten di server kamu sendiri <AutoMark color="red">bisa berisi perintah</AutoMark>.
 </div>
 
-<v-clicks at="2">
+<div v-click>
 
 <div class="mt-6 opacity-85">
 Komentar di blog. Satu baris di log. Nama file. File yang diupload orang lain.
@@ -525,9 +521,9 @@ Waktu agent membacanya, teks itu masuk ke tempat yang sama dengan perintah kamu.
 Dan teks itu bisa ikut menyetir.
 </div>
 
-</v-clicks>
+</div>
 
-<div v-click="4" class="mt-10 p-4 rounded border border-gray-400/25 bg-gray-400/10">
+<div v-click class="mt-10 p-4 rounded border border-gray-400/25 bg-gray-400/10">
   <div class="text-sm opacity-60 mb-2">Karena itu pemeriksaan dan perbaikan dipisah:</div>
   <div class="flex items-center gap-3 text-sm">
     <span class="px-2 py-1 rounded bg-gray-400/15">1. Periksa dengan read-only</span>
@@ -644,7 +640,7 @@ layout: default
 Kumpulan prompt siap pakai, dikelompokkan per situasi, bukan per fitur.
 </div>
 
-<div v-click class="grid grid-cols-2 gap-x-8 gap-y-3 mt-8 text-sm">
+<div class="grid grid-cols-2 gap-x-8 gap-y-3 mt-8 text-sm">
   <div class="flex gap-3"><carbon-view class="opacity-50 mt-0.5 shrink-0" /> Website error, baca log-nya</div>
   <div class="flex gap-3"><carbon-email class="opacity-50 mt-0.5 shrink-0" /> Email masuk spam, cek DNS</div>
   <div class="flex gap-3"><carbon-warning class="opacity-50 mt-0.5 shrink-0" /> Scan script judol</div>
@@ -653,7 +649,7 @@ Kumpulan prompt siap pakai, dikelompokkan per situasi, bukan per fitur.
   <div class="flex gap-3"><carbon-cloud class="opacity-50 mt-0.5 shrink-0" /> Pindah layanan tanpa mematikan email</div>
 </div>
 
-<div v-click class="mt-10 text-sm opacity-60">
+<div class="mt-10 text-sm opacity-60">
 Plus checklist keamanan versi lengkapnya. Tinggal ganti bagian dalam kurung siku dengan domain kamu.
 </div>
 

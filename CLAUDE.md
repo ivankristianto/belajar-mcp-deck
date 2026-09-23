@@ -24,7 +24,9 @@ There is no test suite and no linter configured.
 ## Repo layout and how Slidev uses it
 
 - `slides.md` is the single entry point. Slides are separated by `---`; per-slide YAML frontmatter sets layout, transition, and `src:` imports. The deck-level frontmatter lives in the first block (theme `apple-basic`, `comark: true`, `duration: 45min`).
-- `components/*.vue` are auto-registered by filename, usable directly in `slides.md`. No import needed. `AgentLoop`, `IntegrationMesh`, `AccessLevel` and `Prompt` are the deck's own; `Counter` is a leftover from the starter and is unused.
+- `components/*.vue` are auto-registered by filename, usable directly in `slides.md`. No import needed. `AgentLoop`, `IntegrationMesh`, `AccessLevel`, `Prompt` and `AutoMark` are the deck's own; `Counter` is a leftover from the starter and is unused.
+- `AutoMark` draws a rough-notation mark on slide enter without costing a click. Use it instead of `v-mark` when a mark should appear with the slide: a `v-mark` with no click number draws at mount, and Slidev mounts neighbouring slides early, so the animation finishes off screen.
+- `public/` holds static files served from the base path, currently the Kelas Tanya logo on the cover.
 - `styles/index.css` is the deck's only stylesheet. It defines the accent and tone colours plus `--deck-bg` for each colour scheme, and carries the few rules that adjust apple-basic for Plus Jakarta Sans.
 - `setup/mermaid.ts` themes mermaid. Slidev renders mermaid inside a shadow root, so the stylesheet cannot reach it and colours have to go through mermaid's own `themeVariables`.
 - `pages/*.md` holds slides pulled in via `src: ./pages/imported-slides.md`. Split long decks here. Currently unused.
@@ -41,6 +43,10 @@ Markdown in `slides.md` accepts inline Vue, `<script setup>`, UnoCSS attributify
 The deck ships both, and `d` toggles between them at any time. That only works while
 `colorSchema` stays `auto` in the headmatter: Slidev reads any other value as the author
 having decided, and makes the toggle a no-op.
+
+Light is the default. `setup/main.ts` sets it once per browser (tracked by the
+`deck-light-default` localStorage key), so a dark OS still opens the deck light and a later
+`d` toggle is remembered. Clear that key to see the first-load behaviour again.
 
 Two things do not follow the scheme on their own and need a per-scheme value when touched:
 

@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@slidev/cli": "^53.0.0",
+    "@slidev/rough-notation": "^0.1.0",
     "@slidev/theme-apple-basic": "^0.25.1",
     "@slidev/theme-default": "latest",
     "vue": "^3.5.33"
