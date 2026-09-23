@@ -114,7 +114,7 @@ list. This is the single most important thing to confirm with DomaiNesia.
 
 **Fix an error, with review**
 
-> Berdasarkan error di log tadi, jelaskan perbaikan yang kamu usulkan untuk file [path]. Tunjukkan rencananya dulu, jangan langsung diterapkan.
+> Berdasarkan error di log tadi, jelaskan perbaikan yang kamu usulkan untuk file [path]. Tunjukkan rencananya dulu. Setelah saya setujui, terapkan ke file itu saja.
 
 **Clean an injected script**
 
@@ -144,4 +144,7 @@ For the contents page and the closing slide.
 - [ ] Run the tool enumeration prompt in `capabilities.md`, then mark every row above verified or cut
 - [ ] Test every remaining prompt on the demo account, a prompt that does not work is worse than no kit
 - [ ] Translate the safety checklist into Indonesian for the kit
-- [ ] Decide the format, PDF or a page, ask DomaiNesia what they usually send
+- [x] Format: a page next to the deck, `public/starter-kit/index.html`, served at
+      belajarweb.cloud/belajar-mcp/starter-kit/. Change a prompt here and there together.
+      The page drops the email account block and scheduled backup, since the server exposes
+      no email account tools and no backup scheduler.

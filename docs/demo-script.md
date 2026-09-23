@@ -92,7 +92,7 @@ Manager.
 
 Then the repair, and this is where the access level changes:
 
-> Berdasarkan error tadi, jelaskan perbaikan yang kamu usulkan untuk file [path]. Tunjukkan rencananya dulu, jangan langsung diterapkan.
+> Berdasarkan error tadi, jelaskan perbaikan yang kamu usulkan untuk file [path]. Tunjukkan rencananya dulu. Setelah saya setujui, terapkan ke file itu saja.
 
 Show the plan, approve it, let it write. Say out loud that you backed up first and that
 you moved off read-only for this one step.

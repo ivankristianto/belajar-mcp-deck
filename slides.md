@@ -558,7 +558,7 @@ layout: default
 <div class="flex gap-4 items-baseline"><span class="opacity-40 font-mono text-sm w-6">01</span><span>Aktifkan MCP di MyDomaiNesia</span></div>
 <div class="flex gap-4 items-baseline"><span class="opacity-40 font-mono text-sm w-6">02</span><span>Pasang extension di Claude Desktop</span></div>
 <div class="flex gap-4 items-baseline"><span class="opacity-40 font-mono text-sm w-6">03</span><span>Cek koneksi, lalu tanya daftar tool-nya</span></div>
-<div class="flex gap-4 items-baseline"><span class="opacity-40 font-mono text-sm w-6">04</span><span>Baca error log, minta rencana perbaikan</span></div>
+<div class="flex gap-4 items-baseline"><span class="opacity-40 font-mono text-sm w-6">04</span><span>Baca error log, setujui rencana perbaikan</span></div>
 <div class="flex gap-4 items-baseline"><span class="opacity-40 font-mono text-sm w-6">05</span><span>Email masuk spam, periksa DNS-nya</span></div>
 <div class="flex gap-4 items-baseline"><span class="opacity-40 font-mono text-sm w-6">06</span><span>Cari script judol yang ditanam di website</span></div>
 
@@ -606,9 +606,9 @@ layout: default
 
 # Prompt demo, sisanya
 
-<Prompt label="minta rencana perbaikan · butuh izin menulis" tone="write">
+<Prompt label="perbaiki error · butuh izin menulis" tone="write">
 Berdasarkan error tadi, jelaskan perbaikan yang kamu usulkan untuk file [path].
-Tunjukkan rencananya dulu, jangan langsung diterapkan.
+Tunjukkan rencananya dulu. Setelah saya setujui, terapkan ke file itu saja.
 </Prompt>
 
 <Prompt label="email masuk spam · read-only" tone="read">
@@ -649,13 +649,17 @@ Kumpulan prompt siap pakai, dikelompokkan per situasi, bukan per fitur.
   <div class="flex gap-3"><carbon-cloud class="opacity-50 mt-0.5 shrink-0" /> Pindah layanan tanpa mematikan email</div>
 </div>
 
-<div class="mt-10 text-sm opacity-60">
-Plus checklist keamanan versi lengkapnya. Tinggal ganti bagian dalam kurung siku dengan domain kamu.
+<div class="mt-10 flex items-center gap-8">
+  <img src="/qr-starter-kit.svg" alt="QR code ke belajarweb.cloud/belajar-mcp/starter-kit" class="w-28 rounded" />
+  <div>
+    <div class="text-lg font-semibold">belajarweb.cloud/belajar-mcp/starter-kit</div>
+    <div class="text-sm opacity-60 mt-1">Plus checklist keamanan versi lengkapnya. Isi domain kamu sekali, semua prompt ikut terganti.</div>
+  </div>
 </div>
 
 <!--
-Sebutkan cara dapatnya sesuai kesepakatan dengan DomaiNesia. Bacakan satu prompt keras-keras supaya mereka
-dengar bentuk prompt yang baik.
+Minta mereka scan sekarang, selagi slide ini masih di layar.
+Bacakan satu prompt keras-keras supaya mereka dengar bentuk prompt yang baik.
 -->
 
 ---

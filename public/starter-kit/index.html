@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Agent Starter Kit</title>
+<meta name="description" content="Prompt siap pakai untuk mengelola website dan hosting DomaiNesia lewat MCP. Kelas Tanya DomaiNesia, 24 September 2026.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #fbfbf9;
+  --panel: #f1f1ed;
+  --text: #1f2328;
+  --muted: #5d636b;
+  --line: #d9d9d2;
+  --accent: #2f5f93;
+  --safe: #3f6f4e;
+  --warn: #8a6222;
+  --danger: #93463a;
+  --ph-bg: #2f5f9314;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1a1d24;
+    --panel: #22262e;
+    --text: #e6e6e3;
+    --muted: #a0a4ab;
+    --line: #353a44;
+    --accent: #6f9bcb;
+    --safe: #7aa98a;
+    --warn: #c49a5c;
+    --danger: #c27a6d;
+    --ph-bg: #6f9bcb1f;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #1a1d24;
+  --panel: #22262e;
+  --text: #e6e6e3;
+  --muted: #a0a4ab;
+  --line: #353a44;
+  --accent: #6f9bcb;
+  --safe: #7aa98a;
+  --warn: #c49a5c;
+  --danger: #c27a6d;
+  --ph-bg: #6f9bcb1f;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.6 "Plus Jakarta Sans", system-ui, sans-serif;
+}
+main { max-width: 760px; margin: 0 auto; padding: 48px 16px 80px; }
+a { color: var(--accent); }
+h1 { font-size: 2.1rem; line-height: 1.15; letter-spacing: -0.02em; margin: 0 0 8px; }
+h2 { font-size: 1.35rem; letter-spacing: -0.01em; margin: 56px 0 4px; }
+h3 { font-size: 1.02rem; margin: 32px 0 8px; }
+p { margin: 8px 0; }
+.meta, .sub { color: var(--muted); }
+.meta { font-size: 0.9rem; }
+.sub { margin-top: 0; }
+
+.fill {
+  margin-top: 28px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+}
+.fill label { display: block; font-weight: 600; margin-bottom: 6px; }
+.fill input {
+  width: 100%;
+  font: 500 1rem "JetBrains Mono", ui-monospace, monospace;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--text);
+}
+.fill p { font-size: 0.88rem; color: var(--muted); margin: 8px 0 0; }
+
+ol.rules { padding-left: 1.3rem; }
+ol.rules li { margin: 8px 0; }
+ol.rules li strong { display: block; }
+.group { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin: 24px 0 4px; }
+
+.card { margin: 12px 0 0; }
+.card-head { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; flex-wrap: wrap; }
+.level {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid currentColor;
+}
+.level.read { color: var(--safe); }
+.level.write { color: var(--warn); }
+.prompt {
+  position: relative;
+  margin: 0;
+  padding: 14px 16px;
+  padding-right: 84px;
+  border-left: 3px solid var(--safe);
+  border-radius: 0 6px 6px 0;
+  background: var(--panel);
+  font: 0.9rem/1.6 "JetBrains Mono", ui-monospace, monospace;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.prompt.write { border-left-color: var(--warn); }
+.ph { background: var(--ph-bg); color: var(--accent); border-radius: 3px; padding: 0 2px; }
+.copy {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font: 600 0.78rem "Plus Jakarta Sans", sans-serif;
+  padding: 5px 10px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: var(--bg);
+  color: var(--text);
+  cursor: pointer;
+}
+.copy:hover { border-color: var(--accent); }
+.note { font-size: 0.9rem; color: var(--muted); margin: 8px 0 0; }
+
+footer { margin-top: 64px; padding-top: 20px; border-top: 1px solid var(--line); font-size: 0.9rem; color: var(--muted); }
+footer ul { padding-left: 1.2rem; }
+
+@media (max-width: 520px) {
+  h1 { font-size: 1.7rem; }
+  .prompt { padding-right: 16px; padding-top: 44px; }
+}
+</style>
+</head>
+<body>
+<main>
+
+<header>
+  <div class="meta">Kelas Tanya DomaiNesia · 24 September 2026 · Ivan K</div>
+  <h1>AI Agent Starter Kit</h1>
+  <p class="sub">Prompt siap pakai untuk mengelola website dan hosting DomaiNesia lewat MCP, dikelompokkan per situasi.</p>
+</header>
+
+<section>
+  <h2>Cara pakai</h2>
+  <ul>
+    <li>Mulai dari prompt <strong>Read-only</strong>. Prompt itu tidak bisa merusak apa pun.</li>
+    <li>Ganti bagian dalam <span class="ph">[kurung siku]</span> dengan domain atau path kamu.</li>
+    <li>Sebelum menjalankan prompt bertanda <strong>No destructive</strong>, backup dulu, lalu naikkan level akses khusus untuk langkah itu.</li>
+    <li>Prompt ini ditulis untuk Claude Desktop. Kalau kamu pakai aplikasi lain, sebut nama koneksi MCP di aplikasimu.</li>
+  </ul>
+
+  <div class="fill">
+    <label for="domain">Domain kamu</label>
+    <input id="domain" type="text" inputmode="url" autocomplete="off" spellcheck="false" placeholder="contoh: toko-saya.com">
+    <p>Diisi sekali, semua <span class="ph">[domain]</span> di halaman ini ikut terganti, termasuk yang tersalin. Tidak dikirim ke mana pun.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Checklist keamanan</h2>
+  <p class="sub">Versi lengkap dari slide. Empat yang pertama kali perlu dibiasakan: mulai dari read-only, backup, sebut target, baca rencananya.</p>
+
+  <div class="group">Sebelum menyambungkan</div>
+  <ol class="rules">
+    <li><strong>Pilih level akses serendah mungkin.</strong> Read-only sudah cukup untuk sebagian besar kebutuhan: baca log, cari file rusak, cari kode sisipan. Naikkan level untuk satu tugas, lalu turunkan lagi.</li>
+    <li><strong>Tahu apa saja yang bisa dijangkau.</strong> File, database, domain dan DNS, Git deploy, dan sumber daya hosting lain. Semuanya, bukan cuma website yang sedang kamu pikirkan.</li>
+    <li><strong>Perlakukan MCP Password seperti password utama hosting.</strong> Cuma ditampilkan sekali. Jangan masuk screenshot, chat, tiket, atau dokumen bersama. Kalau ragu sudah bocor atau belum, reset saja.</li>
+    <li><strong>Periksa tujuan halaman otorisasi.</strong> Kalau muncul halaman izin, nama aplikasinya harus sama dengan yang sedang kamu sambungkan. Tujuan yang salah berarti akses hosting jatuh ke pihak lain.</li>
+  </ol>
+
+  <div class="group">Sebelum menjalankan yang mengubah sesuatu</div>
+  <ol class="rules" start="5">
+    <li><strong>Backup dulu.</strong> Setiap kali. Agent yang salah, salahnya cepat.</li>
+    <li><strong>Sebut target dengan jelas.</strong> Domain ini, folder ini, file ini. Perintah kabur mengundang tafsir luas.</li>
+    <li><strong>Minta rencananya sebelum perubahannya.</strong> Baca. Kalau rencananya menyentuh sesuatu yang tidak kamu duga, itu peringatan yang kamu cari.</li>
+    <li><strong>Satu tugas satu kali.</strong> Kalau lima perintah digabung, kamu menyetujui langkah pertama dan empat sisanya ikut lewat.</li>
+  </ol>
+
+  <div class="group">Sesudahnya</div>
+  <ol class="rules" start="9">
+    <li><strong>Cek apa yang benar-benar dilakukan.</strong> Lihat riwayat tool yang dijalankan di chat, bukan cuma ringkasan yang dia tulis.</li>
+    <li><strong>Cabut akses kalau sudah selesai.</strong> Koneksi yang tidak dipakai adalah akses yang tidak kamu awasi. Turunkan levelnya atau matikan fiturnya.</li>
+  </ol>
+
+  <div class="group">Yang jarang dibahas</div>
+  <ol class="rules" start="11">
+    <li><strong>Konten di server kamu sendiri bisa berisi perintah.</strong> Komentar blog, satu baris di log, nama file, file yang diupload orang lain. Waktu agent membacanya, teks itu masuk ke tempat yang sama dengan perintah kamu dan bisa ikut menyetir. Jadi pisahkan: periksa dengan read-only, baca sendiri hasilnya, lalu buka chat baru sebelum menaikkan level dan mengubah.</li>
+  </ol>
+</section>
+
+<section>
+  <h2>1. Memeriksa, aman dicoba hari ini</h2>
+  <p class="sub">Semua di bagian ini cukup dengan level Read-only.</p>
+
+  <h3>Cek koneksi</h3>
+  <div class="card"><pre class="prompt">Gunakan MCP DomaiNesia. Periksa apakah koneksi sudah aktif. Jangan ubah atau hapus file apa pun. Tampilkan daftar domain/subdomain dan document root yang tersedia.</pre></div>
+
+  <h3>Website error, apa penyebabnya</h3>
+  <div class="card"><pre class="prompt">Periksa apakah [domain] bisa diakses. Baca error log, ringkas 10 error terakhir, kelompokkan yang berulang, dan jelaskan kemungkinan penyebabnya. Jangan ubah file apa pun.</pre></div>
+
+  <h3>Scan malware dan script judol</h3>
+  <div class="card"><pre class="prompt">Periksa file di document root [domain] untuk kode yang mencurigakan: iframe tersembunyi, script ke domain luar, kode yang disamarkan dengan base64, atau link judi. Laporkan file dan barisnya. Jangan hapus apa pun.</pre></div>
+  <p class="note">Kalau ada temuan, lanjut ke "Bersihkan script yang disusupkan" di bagian 3, di chat baru.</p>
+
+  <h3>Apa yang diubah freelancer</h3>
+  <div class="card"><pre class="prompt">Tampilkan file di [domain] yang berubah dalam 14 hari terakhir beserta waktunya. Tandai yang tidak wajar.</pre></div>
+
+  <h3>Kuota hosting hampir penuh</h3>
+  <div class="card"><pre class="prompt">Kuota hosting saya hampir penuh. Tampilkan folder terbesar dan file yang kemungkinan aman dihapus, misalnya cache atau log lama. Laporkan saja, jangan hapus apa pun.</pre></div>
+
+  <h3>Cek versi PHP, WordPress, dan plugin</h3>
+  <div class="card"><pre class="prompt">Untuk [domain], tampilkan versi PHP, versi WordPress, dan daftar plugin beserta versinya. Tandai yang sudah usang.</pre></div>
+</section>
+
+<section>
+  <h2>2. Situasi usaha kecil</h2>
+  <p class="sub">Dikelompokkan menurut masalahnya, bukan menurut fiturnya.</p>
+
+  <h3>Email selalu masuk spam</h3>
+  <div class="card"><pre class="prompt">Email dari [domain] sering masuk spam. Periksa DNS record MX, SPF, DKIM, dan DMARC. Jelaskan mana yang kurang atau salah dan apa dampaknya. Jangan ubah apa pun.</pre></div>
+  <p class="note">Hampir semua usaha kecil pernah mengalami ini, dan penyebabnya biasanya ada di DNS, bukan di aplikasi emailnya.</p>
+
+  <h3>Nomor telepon toko berubah</h3>
+  <p>Langkah 1, cari dulu di mana saja nomor lama muncul:</p>
+  <div class="card"><pre class="prompt">Nomor telepon toko berubah dari [lama] ke [baru]. Cari semua tempat nomor lama muncul di file dan database [domain]. Laporkan daftarnya dulu, jangan ubah apa pun.</pre></div>
+  <p>Langkah 2, setelah kamu cek daftarnya dan sudah backup:</p>
+  <div class="card" data-level="write"><pre class="prompt">Ganti nomor lama dengan yang baru di lokasi yang tadi kamu laporkan. Tunjukkan diff-nya. Jangan sentuh yang lain.</pre></div>
+  <p class="note">Bentuk yang sama bisa dipakai untuk alamat, jam buka, atau daftar harga.</p>
+
+  <h3>Subdomain untuk kampanye</h3>
+  <div class="card" data-level="write"><pre class="prompt">Buatkan subdomain promo.[domain] dengan document root sendiri. Tunjukkan rencananya dulu sebelum dibuat.</pre></div>
+
+  <h3>Pindah ke layanan baru tanpa mematikan email</h3>
+  <div class="card"><pre class="prompt">Saya mau arahkan [domain] ke layanan baru di [IP atau target]. Tunjukkan record apa saja yang perlu berubah, dan pastikan MX serta SPF tidak ikut berubah supaya email tetap jalan. Jelaskan dulu, jangan terapkan.</pre></div>
+  <p class="note">Waktu mengarahkan domain ke website baru, record email sering ikut terganti dan kotak masuk kantor berhenti menerima email. Prompt ini cuma membuat rencananya. Terapkan sendiri setelah dicek, atau minta agent menerapkan dengan level No destructive.</p>
+
+  <h3>Backup sebelum ada yang diubah</h3>
+  <div class="card" data-level="write"><pre class="prompt">Buat backup penuh untuk [domain] sekarang. Konfirmasi kalau sudah selesai dan sebutkan di mana backup disimpan.</pre></div>
+
+  <h3>Pengunjung melihat peringatan keamanan</h3>
+  <div class="card"><pre class="prompt">Periksa status SSL untuk [domain]. Kapan kedaluwarsa, dan apakah semua subdomain tercakup?</pre></div>
+</section>
+
+<section>
+  <h2>3. Perbaikan, backup dulu</h2>
+  <p class="sub">Jalankan di chat baru setelah pemeriksaan read-only selesai dan hasilnya sudah kamu baca.</p>
+
+  <h3>Perbaiki error, dengan persetujuan</h3>
+  <div class="card" data-level="write"><pre class="prompt">Berdasarkan error di log tadi, jelaskan perbaikan yang kamu usulkan untuk file [path]. Tunjukkan rencananya dulu. Setelah saya setujui, terapkan ke file itu saja.</pre></div>
+  <p class="note">Path file-nya ada di hasil baca error log sebelumnya.</p>
+
+  <h3>Bersihkan script yang disusupkan</h3>
+  <div class="card" data-level="write"><pre class="prompt">Hapus kode injeksi yang tadi kamu temukan di [path]. Tunjukkan diff sebelum dan sesudah. Jangan sentuh file lain.</pre></div>
+  <p class="note">Setelah bersih, ganti password hosting, WordPress, dan MCP Password. Kode sisipan biasanya masuk lewat salah satunya.</p>
+</section>
+
+<footer>
+  <ul>
+    <li><a href="../">Slide sesi ini</a></li>
+    <li><a href="https://www.domainesia.com/panduan/panduan-koneksi-claude-desktop-dengan-mcp-domainesia/">Panduan koneksi Claude Desktop dengan MCP DomaiNesia</a></li>
+    <li><a href="https://www.domainesia.com/panduan/koneksi-chatgpt-dengan-mcp-domainesia/">Panduan koneksi ChatGPT dengan MCP DomaiNesia</a></li>
+    <li><a href="https://www.domainesia.com/berita/apa-itu-mcp/">Apa itu MCP?</a></li>
+  </ul>
+</footer>
+
+</main>
+<script>
+(function () {
+  var KEY = 'starter-kit-domain';
+  var input = document.getElementById('domain');
+  var prompts = Array.prototype.slice.call(document.querySelectorAll('.prompt'));
+
+  function esc(s) {
+    return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
+  function filled(tpl) {
+    var d = input.value.trim();
+    return d ? tpl.split('[domain]').join(d) : tpl;
+  }
+
+  function render() {
+    prompts.forEach(function (pre) {
+      pre.firstChild.innerHTML = esc(filled(pre.dataset.tpl)).replace(/\[[^\]]+\]/g, '<span class="ph">$&</span>');
+    });
+  }
+
+  prompts.forEach(function (pre) {
+    pre.dataset.tpl = pre.textContent.trim();
+    var write = pre.parentNode.dataset.level === 'write';
+    if (write) pre.classList.add('write');
+
+    var badge = document.createElement('div');
+    badge.className = 'card-head';
+    badge.innerHTML = '<span class="level ' + (write ? 'write">No destructive · backup dulu' : 'read">Read-only') + '</span>';
+    pre.parentNode.insertBefore(badge, pre);
+
+    var text = document.createElement('span');
+    pre.textContent = '';
+    pre.appendChild(text);
+
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'copy';
+    btn.textContent = 'Salin';
+    btn.addEventListener('click', function () {
+      var value = filled(pre.dataset.tpl);
+      var done = function () {
+        btn.textContent = 'Tersalin';
+        setTimeout(function () { btn.textContent = 'Salin'; }, 1500);
+      };
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(value).then(done, function () { fallback(value); done(); });
+      } else {
+        fallback(value);
+        done();
+      }
+    });
+    pre.appendChild(btn);
+  });
+
+  // Clipboard API is missing on plain http and in some in-app browsers.
+  function fallback(value) {
+    var ta = document.createElement('textarea');
+    ta.value = value;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); } catch (e) {}
+    document.body.removeChild(ta);
+  }
+
+  try { input.value = localStorage.getItem(KEY) || ''; } catch (e) {}
+  input.addEventListener('input', function () {
+    try { localStorage.setItem(KEY, input.value.trim()); } catch (e) {}
+    render();
+  });
+  render();
+})();
+</script>
+</body>
+</html>

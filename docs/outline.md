@@ -96,8 +96,9 @@ to the starter kit handoff as a spoken sentence.
 
 ## 6. Starter kit handoff (2 min)
 
-Show the cover, read two prompts out loud so people hear the shape of a good one, say
-where it will be sent. Then hand back for Q&A.
+Show the slide with the QR, give people time to scan it, and read two prompts out loud so
+they hear the shape of a good one. The kit is a page next to the deck, at
+belajarweb.cloud/belajar-mcp/starter-kit/, built from `public/starter-kit/index.html`. Then hand back for Q&A.
 
 ## Q&A (15 min)
 
